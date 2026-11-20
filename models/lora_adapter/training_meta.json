@@ -1,0 +1,8 @@
+{
+  "epochs": 8,
+  "steps": 80,
+  "elapsed_seconds": 63.29,
+  "final_loss": 2.0139,
+  "initial_loss": 4.6346,
+  "device": "cpu"
+}
