@@ -1,7 +1,10 @@
 # Local Travel Guide Generator
 
-[![Built with askThili](https://ask.thili.ai/api/v1/public/projects/qhhzpguhhq/badge.svg)](https://ask.thili.ai/b/qhhzpguhhq)
-[![Tests](https://github.com/Ashmit/local-travel-guide-generator/actions/workflows/ci.yml/badge.svg)](https://github.com/Ashmit/local-travel-guide-generator/actions)
+![Python](https://img.shields.io/badge/Python-3.12-blue)
+![PyTorch](https://img.shields.io/badge/PyTorch-LoRA-orange)
+![License](https://img.shields.io/badge/License-MIT-green)
+
+[![Tests](https://github.com/Lishhhh07/localtravel/actions/workflows/ci.yml/badge.svg)](https://github.com/Lishhhh07/localtravel/actions)
 
 This project develops an AI-powered **Local Travel Guide Generator** tailored for travel agencies. It leverages **Low-Rank Adaptation (LoRA)** fine-tuning to adapt a pre-trained causal language model (`GPT-2`, 124M parameters), enabling it to generate concise, highly personalized local travel guides and recommendations for tourists based on their destination and specific interests. The tool features an interactive multi-tab Streamlit UI, quantitative evaluation metrics against unadapted baselines, and weight merging for zero-overhead production inference.
 
@@ -283,3 +286,78 @@ local-travel-guide-generator/
 ├── Dockerfile              # Container deployment recipe
 └── README.md               # Complete documentation and evaluation report
 ```
+## Getting Started
+
+### Prerequisites
+- Python 3.12
+- Git
+- Internet access for downloading the GPT-2 base model on first run
+- Sufficient RAM and disk space for PyTorch and Transformers
+
+### Installation
+
+```bash
+git clone https://github.com/Lishhhh07/localtravel.git
+cd localtravel
+
+python -m venv .venv
+```
+
+Activate the environment:
+
+**Windows PowerShell**
+```powershell
+.venv\Scripts\Activate.ps1
+```
+
+**Linux/macOS**
+```bash
+source .venv/bin/activate
+```
+
+Install dependencies:
+
+```bash
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+### Run the application
+
+```bash
+streamlit run app/main.py
+```
+
+Open http://localhost:8501.
+
+### Run tests
+
+```bash
+pytest -v
+```
+
+### Dataset
+
+The project uses `data/travel_guides.json`, containing 20 structured input-output examples for the fictional city of Port Luminara.
+
+The dataset is a synthetic, fictional travel dataset rather than a collection of verified real-world travel recommendations. Its purpose is to evaluate domain-specific language-model adaptation.
+
+### Reproducibility
+
+- Base model: GPT-2
+- Fine-tuning: PEFT LoRA
+- Random seed: 42
+- LoRA rank: 8
+- LoRA alpha: 16
+- Dataset: `data/travel_guides.json`
+- Training metadata: `models/lora_adapter/training_meta.json`
+
+The trained adapter is provided under `models/lora_adapter/`. Training from scratch requires downloading the GPT-2 base model.
+
+### Limitations
+
+- The training dataset contains only 20 examples.
+- Port Luminara is fictional, so generated locations should not be interpreted as real tourist destinations.
+- Evaluation scores are based on a small evaluation set and should not be treated as general travel recommendation benchmarks.
+- GPT-2 can produce inaccurate or repetitive content for unfamiliar destinations.
+- Results can vary with sampling parameters and hardware.
