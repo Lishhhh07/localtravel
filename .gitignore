@@ -1,0 +1,14 @@
+# Secrets: never commit your real settings
+.env
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.DS_Store
+
+# Runtime storage & cached models
+data/app.json
+data/*.db
+models/
