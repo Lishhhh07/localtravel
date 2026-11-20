@@ -12,3 +12,7 @@ __pycache__/
 data/app.json
 data/*.db
 models/
+models/merged_model/
+models/checkpoints/
+!models/lora_adapter/
+!models/lora_adapter/**
